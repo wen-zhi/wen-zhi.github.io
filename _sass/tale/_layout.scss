@@ -29,6 +29,9 @@ footer,
     display: inline-block;
     margin: 0;
     padding-right: .2rem;
+    font-size: 1.5rem;
+    font-family: $serif-primary;
+    font-weight: bold;
 
     &:hover,
     &:focus {
