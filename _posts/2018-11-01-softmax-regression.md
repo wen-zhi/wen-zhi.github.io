@@ -1,8 +1,10 @@
 ---
 layout: post
-title: "理解 Softmax Regression 与 Logistic Regression"
+title: 理解 Softmax Regression 与 Logistic Regression
 mathjax: true
 comments: true
+abstract: >-
+  Softmax 函数广泛用于各种多类分类模型中，它是 Logistic 函数的一个推广形式。尽管形式上两者看似差距甚大，但本质却是一致的。如果把 Logistic 函数看成是 Softmax 函数在二类任务时的情况，而不是把后者看成是前者的推广形式，就能更清晰地捕捉两者之间的关联。
 ---
 
 > [Softmax Regression - Stanford](http://ufldl.stanford.edu/tutorial/supervised/SoftmaxRegression/) 中详细介绍了 Softmax Regression 以及它与 Logistic Regression 之间的关系。  
