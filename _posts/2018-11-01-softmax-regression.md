@@ -3,12 +3,13 @@ layout: post
 title: 理解 Softmax Regression 与 Logistic Regression
 mathjax: true
 comments: true
-abstract: >-
-  Softmax 函数广泛用于各种多类分类模型中，它是 Logistic 函数的一个推广形式。尽管形式上两者看似差距甚大，但本质却是一致的。如果把 Logistic 函数看成是 Softmax 函数在二类任务时的情况，而不是把后者看成是前者的推广形式，就能更清晰地捕捉两者之间的关联。
+excerpt: >-
+  Softmax 函数被广泛用在各种多类分类模型中，它是 Logistic 函数的一个推广形式。尽管形式上两者看似差距甚大，但内在本质其实是一致的。把 Logistic 函数看作为 Softmax 函数在二类分类任务时的特别情形、而不是把后者看成是前者的推广形式，可以更轻易地捕捉两者之间的关联。
 ---
 
-> [Softmax Regression - Stanford](http://ufldl.stanford.edu/tutorial/supervised/SoftmaxRegression/) 中详细介绍了 Softmax Regression 以及它与 Logistic Regression 之间的关系。  
-> 这里只是简单的补充（Softmax 函数的直观意义）与整理。
+> [Softmax Regression - Stanford](http://ufldl.stanford.edu/tutorial/supervised/SoftmaxRegression/) 中详细地介绍了 Softmax Regression 以及它与 Logistic Regression 之间的关系。  
+>
+> 这里主要做一些简单的补充（Softmax 函数的直观意义）与梳理。
 
 ### 1. Softmax Regression 与 Logistic Regression
 
@@ -66,7 +67,7 @@ P(y = K | x; \theta)
 \end{bmatrix}
 \end{align}$$
 
-若令 $K = 2$，便可得到 **Logistic Regression**。
+若令 $K = 2$，便可得到 **Logistic Regression** 的 hypothesis 函数。
 
 ### 2. Cost Function
 
@@ -75,7 +76,7 @@ P(y = K | x; \theta)
 $$J(\theta) = 
 - \left[ \sum_{i=1}^{m} \sum_{k=1}^{K}  1\left\{y^{(i)} = k\right\} \log \frac{\exp(\theta^{(k)} \cdot x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)} \cdot x^{(i)})}\right]$$
 
-依然地，当 $K = 2$ 时（但二分类模型中类别 $K$ 的取值为 $\{0, 1\}$，$K$ 是从 0 开始，所以下式中写的是当 $K = 1$ 时），可以得到 Logistic Regression 的 Cost Function：
+依然地，当 $K = 2$ 时（但二分类模型中常将类别 $K$ 的取值设置为 $$\{0, 1\}$$，因此下式实际上是「当 $K = 1$ 时」），可以得到 Logistic Regression 的 Cost Function：
 
 $$\begin{align}
 J(\theta) &= - \left[ \sum_{i=1}^{m} \sum_{k=0}^{1} 1\left\{y^{(i)} = k\right\} \log P(y^{(i)} = k | x^{(i)} ; \theta) \right] \\
