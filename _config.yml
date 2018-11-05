@@ -35,6 +35,7 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # for jekyll-seo
 lang: zh_CN
