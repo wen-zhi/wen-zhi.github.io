@@ -27,8 +27,8 @@ layout: default
 </div>
 
 <!-- disqus comments -->
-{% if page.comments %}
-<div id="disqus_thread"></div>
+{% if page.comments and site.comments %}
+<div id="disqus_thread" style="margin: 2rem 0 0"></div>
 <script>
 var disqus_config = function () {
 this.page.url = site.url;  // Replace PAGE_URL with your page's canonical URL variable
