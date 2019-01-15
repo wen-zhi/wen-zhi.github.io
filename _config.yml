@@ -41,7 +41,7 @@ plugins:
 lang: zh_CN
 
 # comments switch for all posts
-comments: false
+comments: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
