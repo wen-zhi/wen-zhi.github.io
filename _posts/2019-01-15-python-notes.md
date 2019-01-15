@@ -16,7 +16,7 @@ excerpt: >-
 
 	`collections` 库中有一个队列结构 `deque`，比使用 `list` 作为队列更方便。
 
-	```
+	```python
 	from collections import deque
 	queue = deque(["Eric", "John", "Michael"])
 	queue.append("Terry")           # Terry arrives
