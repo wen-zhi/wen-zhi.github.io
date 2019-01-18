@@ -12,7 +12,6 @@ excerpt: >-
     - 尽量简洁
     - 早期条目较少的时候不必进行分类
 
-{:class="table-of-content"}
 * TOC
 {:toc}
 
@@ -34,7 +33,9 @@ deque(["John", "Michael", "Terry", "Graham"])
 
 ### 2. 序列的判空操作
 	
-判断一个队列为空，可以直接使用 `if queue:`。判断 Sequence 类型的数据结构都可以这么做。[不推荐使用](https://www.python.org/dev/peps/pep-0008/#programming-recommendations) `if len(queue)`。 
+判断一个队列为空，可以直接使用 `if queue:`。判断 Sequence 类型的数据结构都可以这么做。
+
+[不推荐使用](https://www.python.org/dev/peps/pep-0008/#programming-recommendations) `if len(queue)`。 
 
 ### 3. Python 中的数字类型
 
@@ -69,7 +70,7 @@ sum(i*i for i in range(10))
 >>> next(iterator)
 1
 >>> for i in iterator:
-		print(i)
+	print(i)
 2
 3
 ```
