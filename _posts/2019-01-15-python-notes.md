@@ -43,19 +43,19 @@ Python 中并没有 `int32`, `float32` 这样的数字类型……
 
 也不像 C 语言中的数字类型那么繁杂，比如只一个整型就包括 `int`, `long int`, `long long int`...
 
-它只有**整型**、**浮点型**、**复数**这三种数字类型（不包括标准库和第三方库中的数字类型），即 `int`, `float`, `complex` 。其中 `int` 型是无限精度的，`float` 型使用 C 语言中的 `double` 型来实现。这种设计思路还是非常优雅的。
+它只有**整型**、**浮点型**、**复数**这三种数字类型（这里不考虑标准库和第三方库中的数字类型），即 `int`, `float`, `complex` 。其中 `int` 型是无限精度的，`float` 型使用 C 语言中的 `double` 型来实现。这种设计思路还是非常优雅的。
 
-如果想要严格控制所占用的字节数的数字类型，可以使用 `NumPy` 这样的第三方库。
+如果想要严格控制数字类型所占用的字节数，可以使用 `NumPy` 这样的第三方库。
 
 ### 4. 内存上更加高效的生成器表达式
 
-生成器表达式 (Generator Expressions) 和列表理解式 (List Comprehensions) 的语法几乎一致，只不过使用的是括号：
+生成器表达式 (Generator Expressions) 和列表理解式 (List Comprehensions) 的语法几乎一致，只不过前者使用的是括号：
 
 ```python
 iterator = (i for i in range(3))
 ```
 
-也因此可以直接作为函数的参数，句法上更加简洁，比列表理解式在[内存上更加高效](https://dbader.org/blog/python-generator-expressions)：
+也因此可以直接作为函数的参数，句法上更加简洁，并且比列表理解式在[内存的使用上更加高效](https://dbader.org/blog/python-generator-expressions)：
 
 ```python
 sum(i*i for i in range(10)) 
@@ -74,3 +74,31 @@ sum(i*i for i in range(10))
 2
 3
 ```
+
+### 5. 使用 `max(), min()` 将取值限定在一定区间内
+
+有时我们想把取值结果限定在一个取值区间 `[MIN, MAX]` 内，如果使用判断语句来实现这一功能会比较啰嗦：
+
+```python
+if res > MAX:
+    res = MAX
+if res < MIN:
+    res = MIN
+```
+
+嵌套使用 `max()` 和 `min()` 则更加 Pythonic：
+
+```python
+res = max(MIN, min(MAX, res))
+```
+
+或许看上去有些 tricky，但实际上很简单：`min()` 限定结果小于 `MAX`，`max()` 限定结果大于 `MIN`。即可将 `min` 看作**小于**号，`max` 看作**大于**号。这样就可以直接将上行代码读作：`res` 小于 `MAX`，大于 `MIN`。这恰好就是对 `res` 的取值范围的定义。
+
+当然 `max()` 也可以写在里层：
+
+```python
+res = min(MAX, max(MIN, res))
+```
+
+<br>
+--EOF--
