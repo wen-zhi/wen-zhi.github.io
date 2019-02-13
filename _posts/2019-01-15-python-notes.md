@@ -100,5 +100,19 @@ res = max(MIN, min(MAX, res))
 res = min(MAX, max(MIN, res))
 ```
 
+### 6. 便于统计频率的 `Counter` 类
+
+统计一个东西的出现频率（比如统计一个文本中每个单词的词频），是非常常见的任务。Python 在标准库 `collections` 中专门定义了一个字典 (dict) 的子类 `Counter` 来处理这类事情。
+
+```python
+>>> from collections import Counter
+>>> Counter('hello') # 从一个 iterator 中初始化
+Counter({'h': 1, 'e': 1, 'l': 2, 'o': 1})
+>>> Counter(['You', 'are', 'are', 'beautiful']) # 从一个 iterator 中初始化
+Counter({'You': 1, 'are': 2, 'beautiful': 1})
+```
+
+它就是一个特殊的字典类，特殊体现在键值对中的值 (value) 默认是数值类型、除了继承自字典的方法外还有一些独有的面向频率统计的方法 (method) 、同时也是一个多集 (multiset) ，支持一些集合操作等等。具体细节可翻阅[官方文档](https://docs.python.org/3/library/collections.html#collections.Counter)。
+
 <br>
 --EOF--
