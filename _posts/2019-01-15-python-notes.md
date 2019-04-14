@@ -114,5 +114,36 @@ Counter({'You': 1, 'are': 2, 'beautiful': 1})
 
 它就是一个特殊的字典类，特殊体现在键值对中的值 (value) 默认是数值类型、除了继承自字典的方法外还有一些独有的面向频率统计的方法 (method) 、同时也是一个多集 (multiset) ，支持一些集合操作等等。具体细节可翻阅[官方文档](https://docs.python.org/3/library/collections.html#collections.Counter)。
 
+### 7. 加快检索速度的 `set` 以及它与 `dict` 的关联
+
+如果没有 `set`，我们可以借助字典来去除重复项，因为字典的检索速度非常快，这样便可以大大加快去重的速度：
+
+```python
+words = ['hello', 'world', 'hello']
+aux_dict = {}
+for word in words:
+    aux_dict[word] = None
+no_duplicate_words = list(aux_dict.keys())
+
+>>> print(no_duplicate_words)
+['hello', 'world']
+```
+
+字典的检索速度之所以很快是因为它内在的哈希 (hash) 机制，在某些情形下，字典甚至可以在 O(1) 的时间判断一个值是否在它的 `key` 值列表中。
+
+Python 于 2.6 版本中引入了 `set` 作为内置函数，去除重复项的操作可以直接使用 `set` 来完成：
+
+```python
+words = ['hello', 'world', 'hello']
+no_duplicate_words = list(set(words))
+
+>>> print(no_duplicate_words)
+['hello', 'world']
+```
+
+它的速度也非常快。因为 `set` 也是基于哈希的，它和字典都要求元素（字典中的 `key`）须是可哈希的，`set` 看上去就像只有 `key` 而没有 `value` 的字典。
+
+去重是 `set` 的典型应用，这主要得益于它背后极为高效的检索操作。当我们的程序需要大量检索操作时，可以考虑将数据存放在 `set` 中而不是 `list` 这样的序列类型中来提高检索效率。
+
 <br>
 --EOF--
