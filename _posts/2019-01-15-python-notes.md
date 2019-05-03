@@ -17,7 +17,7 @@ excerpt: >-
 
 ### 1. 队列类型 `deque`
 
-`collections` 库中有一个队列结构 `deque`，比使用 `list` 作为队列更方便。
+`collections` 库中有一个双向队列类型 `deque`，比使用 `list` 作为队列更加方便。
 
 ```python
 from collections import deque
@@ -25,10 +25,14 @@ queue = deque(["Eric", "John", "Michael"])
 queue.append("Terry")           # Terry arrives
 queue.append("Graham")          # Graham arrives
 
->>> queue.popleft()
+>>> queue.pop() # 从最右端出列
+"Graham"
+>>> queue
+deque(["Eric", "John", "Michael", "Terry"])
+>>> queue.popleft() # 从最左端出列
 'Eric'
 >>> queue
-deque(["John", "Michael", "Terry", "Graham"])
+deque(["John", "Michael", "Terry"])
 ```	
 
 ### 2. 序列的判空操作
@@ -86,7 +90,7 @@ if res < MIN:
     res = MIN
 ```
 
-嵌套使用 `max()` 和 `min()` 则更加 Pythonic：
+可以嵌套使用 `max()` 和 `min()` 来使得这一操作更加简洁：
 
 ```python
 res = max(MIN, min(MAX, res))
@@ -106,13 +110,15 @@ res = min(MAX, max(MIN, res))
 
 ```python
 >>> from collections import Counter
->>> Counter('hello') # 从一个 iterator 中初始化
+>>> c1 = Counter('hello') # 从一个 iterator 中初始化
 Counter({'h': 1, 'e': 1, 'l': 2, 'o': 1})
->>> Counter(['You', 'are', 'are', 'beautiful']) # 从一个 iterator 中初始化
+>>> c2 = Counter(['You', 'are', 'are', 'beautiful']) # 从一个 iterator 中初始化
 Counter({'You': 1, 'are': 2, 'beautiful': 1})
+>>> c1['c'] # 不存在的 key 会返回 0（这一点非常实用）
+0
 ```
 
-它就是一个特殊的字典类，特殊体现在键值对中的值 (value) 默认是数值类型、除了继承自字典的方法外还有一些独有的面向频率统计的方法 (method) 、同时也是一个多集 (multiset) ，支持一些集合操作等等。具体细节可翻阅[官方文档](https://docs.python.org/3/library/collections.html#collections.Counter)。
+它就是一个特殊的字典类，特殊体现在键值对中的值 (value) 默认是数值类型且初始值为 0、除了继承自字典的方法外还有一些独有的面向频率统计的方法 (method) 、同时也是一个多集 (multiset) ，支持一些集合操作等等。具体细节可翻阅[官方文档](https://docs.python.org/3/library/collections.html#collections.Counter)。
 
 ### 7. 加快检索速度的 `set` 以及它与 `dict` 的关联
 
